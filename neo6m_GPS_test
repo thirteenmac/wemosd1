@@ -1,0 +1,17 @@
+#include <SoftwareSerial.h>
+
+// The software serial connection to the GPS module
+SoftwareSerial ss(13, 15);  // (
+
+void setup(){
+  Serial.begin(115200); //used by serial monitor
+  ss.begin(9600); //used by the Neo 6m GPS
+}
+
+void loop(){
+  while (ss.available() > 0){
+    // get the byte data from the GPS
+    byte gpsData = ss.read();
+    Serial.write(gpsData);
+  }
+}
